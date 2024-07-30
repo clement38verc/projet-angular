@@ -1,0 +1,23 @@
+<div class="w-25 mx-auto">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <!-- email -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Titre</label>
+        <input type="text" class="form-control" formControlName="task_name">
+        <!-- on verifie si le champ titre a recu le focus au moins une fois et que l'utilisateur a taper ou pas quelque chose dedans pour pouvoir afficher l'erreur correspondante -->
+        <div *ngIf="postForm.get('task_name')?.invalid && postForm.get('task_name')?.touched">
+          <p *ngIf="postForm.get('task_name')?.errors?.['required']">titre requis</p>
+        </div>
+      </div>
+      <!-- mot de passe -->
+      <div class="mb-3">
+        <label class="form-label">Commentaire</label>
+        <textarea formControlName="description" class="form-control" rows="3"></textarea>
+        <div *ngIf="postForm.get('description')?.invalid && postForm.get('description')?.touched">
+          <p *ngIf="postForm.get('description')?.errors?.['required']">commentaire requis</p>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+</div>
